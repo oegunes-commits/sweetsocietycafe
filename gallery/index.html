@@ -60,6 +60,15 @@ header.page p { color:var(--cocoa-soft); max-width:60ch; margin:0 auto; }
 .lightbox img { max-width:min(92vw, 860px); max-height:88vh; border-radius:12px; }
 footer { text-align:center; padding:30px 20px 44px; color:var(--cocoa-soft); font-size:14px; }
 footer a { color:var(--rose); }
+@media (max-width: 640px) {
+  nav { padding:10px 16px; }
+  header.page { padding:38px 16px 2px; }
+  .wrap { padding:16px 12px 60px; }
+  .grid { grid-template-columns:repeat(2, 1fr); gap:9px; }
+  .grid a { border-radius:10px; }
+  .filters { gap:7px; margin:20px 0 22px; }
+  .filters button { font-size:12.5px; padding:7px 12px; }
+}
 </style>
 </head>
 <body>
