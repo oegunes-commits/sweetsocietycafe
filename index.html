@@ -503,6 +503,25 @@
     footer { padding: 28px 18px 38px; }
   }
 
+
+  /* menu duo layout */
+  .menu-duo { display: grid; grid-template-columns: minmax(320px, 400px) 1fr; gap: 26px; align-items: start; }
+  .menu-duo .menu-panel { padding: 40px 34px; }
+  .menu-duo .menu-cols { columns: 1; max-width: none; }
+  .menu-side { display: grid; gap: 26px; }
+  .menu-side .workshop-band { grid-template-columns: 1fr; gap: 16px; padding: 36px 34px; }
+  .order-card {
+    border: 1px solid var(--sage-soft); border-radius: 22px;
+    padding: 36px 34px; background: var(--card); box-shadow: var(--shadow);
+  }
+  .order-card h3 {
+    font-family: var(--serif); font-weight: 500; font-size: clamp(24px, 2.6vw, 32px);
+    margin: 0 0 10px; line-height: 1.12;
+  }
+  .order-card h3 em { font-style: italic; color: var(--rose); }
+  .order-card p:not(.eyebrow) { margin: 0 0 22px; color: var(--cocoa-soft); max-width: 52ch; }
+  @media (max-width: 900px) { .menu-duo { grid-template-columns: 1fr; } }
+
   /* reveal on scroll */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s ease, transform .8s ease; }
   .reveal.in { opacity: 1; transform: none; }
@@ -520,8 +539,8 @@
     <nav class="nav-links" aria-label="Site">
       <a href="#craft">Our Story</a>
       <a href="#signatures">Signatures</a>
-      <a href="#menu">Sweet Creations</a>
       <a href="#gallery">Gallery</a>
+      <a href="#menu">Sweet Creations</a>
       <a href="#visit">Visit</a>
       <a class="btn-ig" href="https://www.instagram.com/sweetsociety35/" target="_blank" rel="noopener">@sweetsociety35</a>
     </nav>
@@ -624,30 +643,6 @@
     </div>
   </section>
 
-  <section class="menu" id="menu">
-    <div class="wrap">
-      <div class="menu-panel reveal">
-        <div class="menu-head">
-          <div class="script">Indulge in our</div>
-          <h2>Sweet Creations</h2>
-        </div>
-        <div class="menu-cols">
-          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Custom Cakes</div>
-          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Macaron Towers</div>
-          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Cream Puffs</div>
-          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Pies &amp; Mini Pies</div>
-          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Cupcakes</div>
-          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Cake Pops &amp; Cakesicles</div>
-          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Cookies &amp; Cookie Favors</div>
-          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Sourdough Bread</div>
-          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Lemon Bars</div>
-          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Strawberry Shortcake</div>
-        </div>
-        <div class="menu-more">…and more, baked fresh every day</div>
-      </div>
-    </div>
-  </section>
-
   <section class="gallery" id="gallery">
     <div class="wrap">
       <div class="sec-head reveal">
@@ -690,15 +685,44 @@
     </div>
   </section>
 
-  <section id="workshops">
+  <section class="menu" id="menu">
     <div class="wrap">
-      <div class="workshop-band reveal">
+      <div class="menu-duo">
+        <div class="menu-panel reveal">
+        <div class="menu-head">
+          <div class="script">Indulge in our</div>
+          <h2>Sweet Creations</h2>
+        </div>
+        <div class="menu-cols">
+          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Custom Cakes</div>
+          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Macaron Towers</div>
+          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Cream Puffs</div>
+          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Pies &amp; Mini Pies</div>
+          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Cupcakes</div>
+          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Cake Pops &amp; Cakesicles</div>
+          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Cookies &amp; Cookie Favors</div>
+          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Sourdough Bread</div>
+          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Lemon Bars</div>
+          <div class="menu-item"><span class="heart" aria-hidden="true">❤</span>Strawberry Shortcake</div>
+        </div>
+        <div class="menu-more">…and more, baked fresh every day</div>
+      </div>
+        <div class="menu-side">
+          <div class="workshop-band reveal">
         <div>
           <p class="eyebrow">Learn with us</p>
           <h3>Cake decorating <em>workshops</em></h3>
           <p>Small-group classes in vintage cake decoration and sugar craft — hosted at the café once we open our doors. Announced first on Instagram.</p>
         </div>
         <a class="btn-ig" href="https://www.instagram.com/sweetsociety35/" target="_blank" rel="noopener">Get notified</a>
+      </div>
+          <div class="order-card reveal">
+            <p class="eyebrow">Custom orders</p>
+            <h3>Planning a <em>celebration</em>?</h3>
+            <p>Birthdays, baby showers, weddings and more — every cake is made to order. Browse 2,500+ past creations for inspiration, then reach out.</p>
+            <a class="badge-open" href="/gallery/"><span class="dot"></span>Browse the full gallery</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
