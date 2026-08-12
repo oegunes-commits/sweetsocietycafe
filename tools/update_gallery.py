@@ -154,26 +154,55 @@ for p in posts:
 json.dump(sorted(known), open(CODES, 'w'))
 
 # ---- 2b. cake of the day ----------------------------------------------------
-# Newest non-pinned post whose optimized image exists locally; the homepage
-# reads gallery/latest.json to fill the "Cake of the day" section.
-for p in posts:
-    if not p['code'] or p.get('pinned'):
-        continue
-    fid = hashlib.md5(p['code'].encode()).hexdigest()[:12]
-    if os.path.exists(os.path.join(IMG_DIR, fid + '.jpg')):
-        latest = {'f': fid + '.jpg', 't': ' '.join((p['cap'] or '').split())[:160],
-                  'd': time.strftime('%Y-%m-%d')}
-        old = None
-        if os.path.exists(os.path.join(ROOT, 'gallery', 'latest.json')):
-            try:
-                old = json.load(open(os.path.join(ROOT, 'gallery', 'latest.json'), encoding='utf-8'))
-            except Exception:
-                pass
-        if not old or old.get('f') != latest['f']:
-            json.dump(latest, open(os.path.join(ROOT, 'gallery', 'latest.json'), 'w', encoding='utf-8'),
-                      ensure_ascii=False)
-            print('cake of the day ->', latest['f'], latest['t'][:50])
-        break
+# If a genuinely new post arrived today, feature it. Otherwise rotate daily
+# through the categorized gallery at random, never repeating until the whole
+# pool has been shown (history in tools/cotd_history.json).
+import random
+LATEST = os.path.join(ROOT, 'gallery', 'latest.json')
+HIST = os.path.join(ROOT, 'tools', 'cotd_history.json')
+today = time.strftime('%Y-%m-%d')
+
+hist = []
+if os.path.exists(HIST):
+    try:
+        hist = json.load(open(HIST))
+    except Exception:
+        hist = []
+old = None
+if os.path.exists(LATEST):
+    try:
+        old = json.load(open(LATEST, encoding='utf-8'))
+    except Exception:
+        pass
+
+pick = None
+if new_items:
+    pick = {'f': new_items[0]['f'], 't': new_items[0]['t'], 'd': today}
+elif not old or old.get('d') != today:
+    # no new post today -> random cake from the nicely-categorized pool
+    try:
+        page_txt = open(PAGE, encoding='utf-8').read()
+        data_m = re.search(r'const DATA = (\[.*?\]);\n', page_txt, re.S)
+        entries = json.loads(data_m.group(1))
+        good = ('birthday', 'baby', 'wedding', 'macaron', 'grad')
+        pool = [e for e in entries if e['c'] in good and e['f'] not in hist
+                and os.path.exists(os.path.join(IMG_DIR, e['f']))]
+        if not pool:  # every cake has had its day -> start over
+            hist = []
+            pool = [e for e in entries if e['c'] in good
+                    and os.path.exists(os.path.join(IMG_DIR, e['f']))]
+        if pool:
+            e = random.choice(pool)
+            pick = {'f': e['f'], 't': e['t'], 'd': today}
+    except Exception as ex:
+        print('cotd rotation failed:', ex)
+
+if pick and (not old or old.get('f') != pick['f']):
+    json.dump(pick, open(LATEST, 'w', encoding='utf-8'), ensure_ascii=False)
+    if pick['f'] not in hist:
+        hist.append(pick['f'])
+    json.dump(hist, open(HIST, 'w'))
+    print('cake of the day ->', pick['f'], pick['t'][:50])
 
 if not new_items:
     print('nothing new')
