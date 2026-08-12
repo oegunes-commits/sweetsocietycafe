@@ -522,6 +522,40 @@
   .order-card p:not(.eyebrow) { margin: 0 0 22px; color: var(--cocoa-soft); max-width: 52ch; }
   @media (max-width: 900px) { .menu-duo { grid-template-columns: 1fr; } }
 
+
+  /* cake of the day */
+  .cotd { background: var(--rose-wash); padding: 76px 0; }
+  .cotd[hidden] { display: none; }
+  .cotd-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 52px; align-items: center; }
+  .cotd-frame {
+    border-radius: 24px; overflow: hidden; aspect-ratio: 1;
+    border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--card);
+  }
+  .cotd-frame img {
+    width: 100%; height: 100%; object-fit: cover;
+    animation: kenburns 16s ease-in-out infinite alternate;
+  }
+  @keyframes kenburns {
+    from { transform: scale(1) translate(0, 0); }
+    to { transform: scale(1.14) translate(2.2%, -2.2%); }
+  }
+  .cotd-copy h2 {
+    font-family: var(--serif); font-weight: 500; font-size: clamp(32px, 4vw, 46px);
+    line-height: 1.08; margin: 0;
+  }
+  .cotd-copy h2 em { font-style: italic; color: var(--rose); }
+  .cotd-cap {
+    font-family: var(--serif); font-style: italic; font-size: clamp(19px, 2.2vw, 24px);
+    color: var(--cocoa-soft); margin: 16px 0 28px; max-width: 40ch;
+  }
+  @media (max-width: 880px) {
+    .cotd { padding: 56px 0; }
+    .cotd-grid { grid-template-columns: 1fr; gap: 30px; }
+    .cotd-copy { text-align: center; }
+    .cotd-cap { margin-left: auto; margin-right: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) { .cotd-frame img { animation: none; } }
+
   /* reveal on scroll */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s ease, transform .8s ease; }
   .reveal.in { opacity: 1; transform: none; }
@@ -579,6 +613,20 @@
       <div class="cat" role="listitem"><div class="c1">Pastries</div><div class="c2">made with love</div></div>
     </div>
   </div>
+
+  <section class="cotd" id="today" hidden>
+    <div class="wrap">
+      <div class="cotd-grid">
+        <div class="cotd-media"><div class="cotd-frame"><img id="cotd-img" alt="Cake of the day from the Kuzum Cookies studio"></div></div>
+        <div class="cotd-copy">
+          <p class="eyebrow">Fresh from the studio</p>
+          <h2>Cake of the <em>day</em></h2>
+          <p class="cotd-cap" id="cotd-cap"></p>
+          <a class="badge-open" href="/gallery/"><span class="dot"></span>See every creation</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="about" id="craft">
     <div class="wrap">
@@ -769,6 +817,15 @@
     for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  fetch('/gallery/latest.json').then(r => r.ok ? r.json() : null).then(d => {
+    if (!d || !d.f) return;
+    document.getElementById('cotd-img').src = '/gallery/img/' + d.f;
+    const q = (d.t || '').match(/["“]([^"”]+)["”]/);
+    document.getElementById('cotd-cap').textContent = '“' + (q ? q[1].trim() : 'Made with love, for you.') + '”';
+    document.getElementById('today').hidden = false;
+  }).catch(() => {});
+
 
   const burger = document.querySelector('.nav-burger');
   const navEl = document.querySelector('header.nav');

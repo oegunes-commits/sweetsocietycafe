@@ -66,7 +66,8 @@ for block in re.findall(r'<div class="item">.*?</div>\s*</div>', profile, re.S):
     alt = re.search(r'<img[^>]+alt="([^"]*)"', block)
     if code and src and '{code}' not in code.group(1):
         posts.append({'cap': html.unescape(alt.group(1)) if alt else '',
-                      'thum': html.unescape(src.group(1)), 'code': code.group(1)})
+                      'thum': html.unescape(src.group(1)), 'code': code.group(1),
+                      'pinned': 'icon-pin' in block})
 
 if len(posts) < 5:
     print('imginn failed, trying pixwox...')
@@ -151,6 +152,29 @@ for p in posts:
     print('added:', fid, new_items[-1]['c'], '|', new_items[-1]['t'][:60])
 
 json.dump(sorted(known), open(CODES, 'w'))
+
+# ---- 2b. cake of the day ----------------------------------------------------
+# Newest non-pinned post whose optimized image exists locally; the homepage
+# reads gallery/latest.json to fill the "Cake of the day" section.
+for p in posts:
+    if not p['code'] or p.get('pinned'):
+        continue
+    fid = hashlib.md5(p['code'].encode()).hexdigest()[:12]
+    if os.path.exists(os.path.join(IMG_DIR, fid + '.jpg')):
+        latest = {'f': fid + '.jpg', 't': ' '.join((p['cap'] or '').split())[:160],
+                  'd': time.strftime('%Y-%m-%d')}
+        old = None
+        if os.path.exists(os.path.join(ROOT, 'gallery', 'latest.json')):
+            try:
+                old = json.load(open(os.path.join(ROOT, 'gallery', 'latest.json'), encoding='utf-8'))
+            except Exception:
+                pass
+        if not old or old.get('f') != latest['f']:
+            json.dump(latest, open(os.path.join(ROOT, 'gallery', 'latest.json'), 'w', encoding='utf-8'),
+                      ensure_ascii=False)
+            print('cake of the day ->', latest['f'], latest['t'][:50])
+        break
+
 if not new_items:
     print('nothing new')
     print('CHANGED=0')
