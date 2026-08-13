@@ -101,9 +101,10 @@ if len(posts) < 5:
 
 print(f'scraped {len(posts)} recent posts')
 if len(posts) < 5:
-    print('WARN: scrape looks broken (pixwox down or markup changed) - aborting safely')
-    print('CHANGED=0')
-    sys.exit(0)
+    # Mirrors block datacenter IPs (cloud/CI) - skip the scrape part but still
+    # run the cake-of-the-day rotation below, which needs no network.
+    print('WARN: scrape unavailable from here - skipping new-post check, rotation still runs')
+    posts = []
 
 # ---- 2. find genuinely new ones --------------------------------------------
 # Dedupe is by Instagram post code: tools/known_codes.json lists every post
