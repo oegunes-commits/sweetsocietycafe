@@ -556,6 +556,27 @@
   }
   @media (prefers-reduced-motion: reduce) { .cotd-frame img { animation: none; } }
 
+
+  /* birthday club band */
+  .bday-band { background: var(--rose-wash); padding: 60px 0; }
+  .bday-band-inner {
+    display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center;
+    background: var(--card); border: 1px solid var(--line); border-radius: 22px;
+    padding: 38px 44px; box-shadow: var(--shadow);
+  }
+  .bday-band .script-line { font-family: var(--script); font-size: 26px; color: var(--rose); }
+  .bday-band h3 {
+    font-family: var(--serif); font-weight: 500; font-size: clamp(26px, 3vw, 36px);
+    margin: 2px 0 8px; line-height: 1.1;
+  }
+  .bday-band h3 em { font-style: italic; color: var(--rose); }
+  .bday-band p { margin: 0; color: var(--cocoa-soft); max-width: 56ch; }
+  @media (max-width: 760px) {
+    .bday-band { padding: 46px 0; }
+    .bday-band-inner { grid-template-columns: 1fr; padding: 30px 26px; text-align: center; }
+    .bday-band p { margin-left: auto; margin-right: auto; }
+  }
+
   /* reveal on scroll */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s ease, transform .8s ease; }
   .reveal.in { opacity: 1; transform: none; }
@@ -594,6 +615,7 @@
         <div class="cta-row">
           <a class="badge-open" href="#visit"><span class="dot"></span>Opening September 2026</a>
           <a class="cta-quiet" href="https://www.instagram.com/sweetsociety35/" target="_blank" rel="noopener">Follow the journey</a>
+          <a class="cta-quiet" href="/birthday-club/">🎂 Birthday Club</a>
         </div>
       </div>
       <div class="hero-art">
@@ -773,6 +795,19 @@
             <a class="badge-open" href="/gallery/"><span class="dot"></span>Browse the full gallery</a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bday-band">
+    <div class="wrap">
+      <div class="bday-band-inner reveal">
+        <div>
+          <div class="script-line">Celebrate with us</div>
+          <h3>Join the <em>Birthday Club</em></h3>
+          <p>A free cookie on your birthday week, 10% off your custom celebration cake, and a sweet reminder right on time.</p>
+        </div>
+        <a class="badge-open" href="/birthday-club/"><span class="dot"></span>Join free — 20 seconds</a>
       </div>
     </div>
   </section>
