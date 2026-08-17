@@ -560,7 +560,7 @@
   /* birthday club band */
   .bday-band { background: var(--rose-wash); padding: 60px 0; }
   .bday-band-inner {
-    display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center;
+    display: grid; grid-template-columns: 1fr auto auto; gap: 30px; align-items: center;
     background: var(--card); border: 1px solid var(--line); border-radius: 22px;
     padding: 38px 44px; box-shadow: var(--shadow);
   }
@@ -571,6 +571,11 @@
   }
   .bday-band h3 em { font-style: italic; color: var(--rose); }
   .bday-band p { margin: 0; color: var(--cocoa-soft); max-width: 56ch; }
+  .bday-qr { text-align: center; }
+  .bday-qr img { display: block; margin: 0 auto; background: #FBF7F1; padding: 8px;
+    border: 1px solid var(--line); border-radius: 14px; }
+  .scanlbl { font-size: 11.5px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-top: 8px; }
   @media (max-width: 760px) {
     .bday-band { padding: 46px 0; }
     .bday-band-inner { grid-template-columns: 1fr; padding: 30px 26px; text-align: center; }
@@ -806,6 +811,10 @@
           <div class="script-line">Celebrate with us</div>
           <h3>Join the <em>Birthday Club</em></h3>
           <p>A free cookie on your birthday week, 10% off your custom celebration cake, and a sweet reminder right on time.</p>
+        </div>
+        <div class="bday-qr">
+          <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzcwIiBoZWlnaHQ9IjM3MCIgY2xhc3M9InNlZ25vIj48cGF0aCB0cmFuc2Zvcm09InNjYWxlKDEwKSIgY2xhc3M9InFybGluZSIgc3Ryb2tlPSIjNGEzYTJlIiBkPSJNMiAyLjVoN20xIDBoMW03IDBoNG0xIDBoMW0xIDBoMW0yIDBoN20tMzMgMWgxbTUgMGgxbTMgMGgzbTEgMGgxbTMgMGgxbTEgMGg0bTIgMGgxbTUgMGgxbS0zMyAxaDFtMSAwaDNtMSAwaDFtMSAwaDNtNCAwaDFtMiAwaDJtMyAwaDFtMiAwaDFtMSAwaDNtMSAwaDFtLTMzIDFoMW0xIDBoM20xIDBoMW0xIDBoMW0xIDBoMm01IDBoM20zIDBoMm0xIDBoMW0xIDBoM20xIDBoMW0tMzMgMWgxbTEgMGgzbTEgMGgxbTIgMGgybTEgMGgxbTIgMGgybTEgMGgzbTIgMGgxbTIgMGgxbTEgMGgzbTEgMGgxbS0zMyAxaDFtNSAwaDFtMSAwaDJtMSAwaDNtMSAwaDFtMyAwaDJtMyAwaDFtMSAwaDFtNSAwaDFtLTMzIDFoN20xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoN20tMjUgMWgybTEgMGgxbTMgMGgxbTEgMGgybTIgMGgxbTEgMGgxbS0yMyAxaDFtMSAwaDFtMSAwaDVtMyAwaDJtMSAwaDFtNCAwaDFtMSAwaDFtMSAwaDNtMSAwaDJtMSAwaDFtLTMzIDFoMW0yIDBoM20yIDBoMW0xIDBoM20xIDBoMW0xIDBoMm0yIDBoMW0zIDBoNG0zIDBoMm0tMzMgMWg3bTIgMGgzbTEgMGgzbTIgMGgybTIgMGgxbTIgMGgxbTEgMGgybTEgMGgxbTEgMGgxbS0zMyAxaDJtMyAwaDFtMSAwaDFtMSAwaDNtMSAwaDRtMSAwaDVtMSAwaDFtMSAwaDFtMSAwaDJtMSAwaDFtLTMyIDFoMW0yIDBoMm0xIDBoMW0xIDBoNG0xIDBoMW0yIDBoMW0xIDBoNG0yIDBoM20yIDBoMW0xIDBoMW0tMzIgMWgybTEgMGgxbTEgMGgxbTIgMGgybTEgMGgxbTEgMGgybTEgMGgzbTMgMGgxbTEgMGgzbTEgMGgybTEgMGgybS0zMyAxaDFtMSAwaDFtMiAwaDJtMiAwaDJtMiAwaDNtMiAwaDFtMSAwaDJtMSAwaDRtNCAwaDFtLTI5IDFoMm0yIDBoMW0xIDBoMW0zIDBoM20xIDBoMm0xIDBoNW0xIDBoMm0zIDBoMW0tMzAgMWgzbTEgMGgxbTEgMGgxbTIgMGgybTIgMGgxbTUgMGgybTEgMGgxbTEgMGgxbTEgMGgxbTIgMGgxbS0zMiAxaDFtMiAwaDFtMyAwaDFtMiAwaDRtMiAwaDFtMSAwaDFtMiAwaDFtMSAwaDJtMiAwaDFtMSAwaDFtMSAwaDFtLTMxIDFoM20xIDBoMm0xIDBoMW0xIDBoMm0xIDBoMm0yIDBoMm0xIDBoM20zIDBoMW0zIDBoMW0xIDBoMW0tMzIgMWgxbTEgMGgybTQgMGgybTEgMGg1bTEgMGgxbTEgMGgybTEgMGgybTEgMGgybTMgMGgxbS0zMiAxaDNtMyAwaDJtMSAwaDJtMSAwaDRtNSAwaDFtMSAwaDNtNSAwaDFtLTI5IDFoM20xIDBoMW0xIDBoMW0xIDBoM20yIDBoMm0zIDBoMW0yIDBoMW0xIDBoMW0zIDBoM20tMzMgMWgybTEgMGgybTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgybTQgMGg0bTIgMGg2bTIgMGgxbS0zMiAxaDFtMSAwaDFtMSAwaDFtMSAwaDFtMSAwaDRtMSAwaDRtMiAwaDNtNSAwaDJtLTMwIDFoMW0xIDBoMW0yIDBoNG0xIDBoMm0xIDBoMm0xIDBoMm0zIDBoMW0xIDBoNm0tMjEgMWgxbTEgMGgzbTEgMGgybTEgMGg0bTEgMGgzbTMgMGgybTIgMGgxbS0zMyAxaDdtMSAwaDJtMSAwaDJtMyAwaDJtMiAwaDFtMyAwaDFtMSAwaDFtMSAwaDRtLTMyIDFoMW01IDBoMW0xIDBoMW04IDBoNW0yIDBoMW0zIDBoMW0yIDBoMm0tMzMgMWgxbTEgMGgzbTEgMGgxbTIgMGgxbTEgMGgxbTIgMGgxbTEgMGg3bTEgMGg2bTIgMGgxbS0zMyAxaDFtMSAwaDNtMSAwaDFtMSAwaDFtMSAwaDJtMSAwaDFtMiAwaDJtNCAwaDNtMSAwaDFtMSAwaDRtLTMyIDFoMW0xIDBoM20xIDBoMW00IDBoMm0zIDBoM20zIDBoNG0yIDBoM20xIDBoMW0tMzMgMWgxbTUgMGgxbTEgMGgxbTIgMGg1bTEgMGgybTEgMGgybTEgMGgzbTMgMGgxbS0zMCAxaDdtMiAwaDJtMSAwaDRtNSAwaDFtMiAwaDFtMyAwaDJtMSAwaDEiLz48L3N2Zz4NCg==" alt="QR code — scan to join the Birthday Club" width="122" height="122">
+          <div class="scanlbl">Scan to join</div>
         </div>
         <a class="badge-open" href="/birthday-club/"><span class="dot"></span>Join free — 20 seconds</a>
       </div>
