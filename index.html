@@ -437,7 +437,7 @@
   @media (max-width: 760px) { .workshop-band { grid-template-columns: 1fr; padding: 34px 28px; } }
 
   /* visit */
-  .visit { text-align: center; padding: 110px 0 100px; }
+  .visit { text-align: center; padding: 110px 0 0; }
   .visit .mono {
     font-family: var(--serif); font-weight: 500;
     font-size: clamp(44px, 6.4vw, 84px); line-height: 1.02; margin: 0;
@@ -471,12 +471,11 @@
   @media (max-width: 760px) { .visit-cards { grid-template-columns: 1fr; } }
 
   .map-frame {
-    max-width: 880px; margin: 46px auto 0;
-    border: 1px solid var(--line); border-radius: 22px; overflow: hidden;
-    box-shadow: var(--shadow); line-height: 0;
+    width: 100vw; margin: 72px 0 0 calc(50% - 50vw);
+    border-top: 1px solid var(--line); line-height: 0;
   }
-  .map-frame iframe { filter: saturate(.82); }
-  @media (max-width: 640px) { .map-frame { margin-top: 32px; } .map-frame iframe { height: 300px; } }
+  .map-frame iframe { filter: saturate(.82); height: 480px; }
+  @media (max-width: 640px) { .map-frame { margin-top: 44px; } .map-frame iframe { height: 320px; } }
 
   footer {
     border-top: 1px solid var(--line); padding: 34px 24px 44px;
@@ -880,7 +879,7 @@
         <div class="map-frame reveal">
           <iframe
             src="https://www.google.com/maps?q=7+Boonton+Turnpike,+Lincoln+Park,+NJ+07035&output=embed"
-            width="100%" height="380" style="border:0" loading="lazy"
+            width="100%" height="480" style="border:0" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             title="Map — Sweet Society Café, 7 Boonton Turnpike, Lincoln Park, NJ"></iframe>
         </div>
