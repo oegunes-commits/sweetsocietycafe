@@ -471,7 +471,7 @@
   @media (max-width: 760px) { .visit-cards { grid-template-columns: 1fr; } }
 
   .map-frame {
-    width: 100vw; margin: 72px 0 0 calc(50% - 50vw);
+    width: 100%; margin: 72px 0 0;
     border-top: 1px solid var(--line); line-height: 0;
   }
   .map-frame iframe { filter: saturate(.82); height: 480px; }
@@ -875,17 +875,17 @@
         </div>
         <div class="cta-row">
           <a class="badge-open" href="https://www.instagram.com/sweetsociety35/" target="_blank" rel="noopener"><span class="dot"></span>Follow @sweetsociety35</a>
-
-        <div class="map-frame reveal">
-          <iframe
-            src="https://www.google.com/maps?q=7+Boonton+Turnpike,+Lincoln+Park,+NJ+07035&output=embed"
-            width="100%" height="480" style="border:0" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Map — Sweet Society Café, 7 Boonton Turnpike, Lincoln Park, NJ"></iframe>
-        </div>
         </div>
       </div>
     </div>
+  
+  <div class="map-frame reveal">
+    <iframe
+      src="https://www.google.com/maps?q=7+Boonton+Turnpike,+Lincoln+Park,+NJ+07035&output=embed"
+      width="100%" height="480" style="border:0" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Map — Sweet Society Café, 7 Boonton Turnpike, Lincoln Park, NJ"></iframe>
+  </div>
   </section>
 </main>
 
